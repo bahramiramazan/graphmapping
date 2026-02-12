@@ -17,69 +17,6 @@ with open('files/questions'+str(9)+'.json') as f:
 questions_records={}
 questions={}
 
-
-# L=['348#2025-10-26 10*08*26.179500','978#2025-10-26 10*10*32.210895','57#2025-10-25 08*36*20.929632','558#2025-10-25 09*07*45.897417']
-# L=[]
-# q_new={}
-
-# for k in L:
-#     q_new[k]=questions[k]
-
-
-
-# file='questions.json'
-# Qs={'Qs':q_new}
-# with open(file, 'w') as fp:
-#     json.dump(Qs, fp)
-
-# exit()
-
-
-
-# def print_data(id_No,l,data,solution,train=False):
-
-#     for di,d in enumerate(data):
-
-#         Right_button_targets=d['Right_button_targets']
-#         Left_button_targets=d['Left_button_targets']
-#         Crossed_edges=d['Crossed_edges']
-#         source=d['source']
-#         target=d['target']
-#         Type_=d['Type_']
-#         Crossed_edges=d['Crossed_edges']
-#         #print('Crossed_edges',Crossed_edges)
-#         if len(Crossed_edges)==0:
-#             Crossed_edges='no'
-#         source_adj=source['adj']
-
-#         source_nodes=source['nodes_in_row']
-#         target_adj=target['adj']
-        
- 
-#         target_nodes=target['nodes_in_row']
-#         target_nodes_row=list(target_nodes)
-#         target_nodes_in_column=target['nodes_in_column']
-#         nodes_to_map=[Right_button_targets[0],Left_button_targets[0]]
-#         map_solution=Right_button_targets,Left_button_targets
-#         map_solution={Right_button_targets[0]:Right_button_targets[1],Left_button_targets[0]:Left_button_targets[1]}
-#         #print('*****')
-#         #print(str(l)+'_sample_'+str(di))
-#         if train:
-#             name=str(l)+'_train_'+str(di)
-#         else:
-#             name=str(l)+'_test_'+str(di)
-
-#         target_column_order=target_nodes_in_column
-
-#         item={'name':name,'source_nodes':source_nodes,'source_adj':source_adj,'target_adj':target_adj,\
-#              'row_nodes_order_source':source_nodes,\
-#               'column_nodes_order_source':source_nodes,\
-#              'row_nodes_order_target':target_nodes_row,\
-#              'column_nodes_order_target':target_nodes_in_column,
-#              'map_solution':map_solution,\
-#              'nodes_to_map':nodes_to_map,'Crossed_edges':Crossed_edges,'Type_':Type_}
-#         print_as_question(id_No,item,solution=solution)
-
 def print_test_questions(L_train,L_test,id_No,task,corss,version):
     train_sample_no=12
     test_sample_no='60'
@@ -206,16 +143,6 @@ def generate_questions(task,version,print_existing_id=None,corss='True'):
     l_test=['experiment',]
 
 
-
-
-
-    # file='questions.json'
-    # Qs={'Qs':questions}
-    # with open(file, 'w') as fp:
-    #     json.dump(Qs, fp)
-
-
-
     #######################
     gemini_3_flash_preview={'agent':'gemini','model':"gemini-3-flash-preview"}
     gemini_3_pro_preview={'agent':'gemini','model':"gemini-3-pro-preview"}
@@ -292,15 +219,6 @@ def eval_answer(flag=False):
     else:
         with open('files/questions'+str(9)+'.json') as f:
             questions_records = json.load(f)#['Qs']
-
-    # with open('questions'+'easy_26'+'.json') as f:
-    #     questions_records = json.load(f)#['Qs']
-
-    # with open('Neuer_Ordner/questions'+'gemini-3-flash-preview'+'.json') as f:
-    #     questions_records = json.load(f)#['Qs']
-
-
-
 
 
 

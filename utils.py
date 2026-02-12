@@ -17,9 +17,6 @@ key=''
 
 GEMINI_KEY=''
 ######################################## 
-
-######################################## 
-
 def get_args():
     argParser = argparse.ArgumentParser()
     argParser.add_argument("-t", "--task", help=" print_train,print_test")
