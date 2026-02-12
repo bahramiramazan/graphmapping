@@ -287,11 +287,11 @@ def eval_answer(flag=False):
     #####
     import itertools
     if flag:
-        with open('questions_'+str(60)+'_crossed.json') as f:
+        with open('files/questions_'+str(60)+'_crossed.json') as f:
             questions_records = json.load(f)#['Qs']
     
     else:
-        with open('questions'+str(9)+'.json') as f:
+        with open('files/questions'+str(9)+'.json') as f:
             questions_records = json.load(f)#['Qs']
 
     # with open('questions'+'easy_26'+'.json') as f:

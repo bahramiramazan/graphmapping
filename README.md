@@ -12,8 +12,12 @@ pip install openai
 pip install -q -U google-genai
 ```
 
+#### To ask questions from the models, run the following: 
 
-
+```
+ python main.py  --task  ask --version original
+```
+#### To evaluate answers from the models, use the notebook. 
 
 
 #### Graph mapping and difficulty factors : 
