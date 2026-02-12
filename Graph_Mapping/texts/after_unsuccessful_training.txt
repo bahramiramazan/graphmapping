@@ -1,3 +1,0 @@
-You did't reach the accuracy needed to pass the training.
-
-Please start again. Press space.
