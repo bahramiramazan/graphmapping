@@ -5,11 +5,15 @@
 Can an LLM already Outperform Human in an Intelligence Test? Yes
 
 + [Graph_Mapping](https://osf.io/wh7zv/overview) Dwonload GraphMapping zip file from the Link, and unzip and replace with the Graph_Mapping Folder in the home direcetory! 
++ In utils.py line 16 and 18, put key for openai, and gemini api's 
 #### Setup
 ```requirements
 pip install openai
 pip install -q -U google-genai
 ```
+
+
+
 
 
 #### Graph mapping and difficulty factors : 
