@@ -12,22 +12,24 @@ pip install -q -U google-genai
 ```
 
 
-
+# Graph mapping and difficulty factors : 
 
 <p align="center">
   <img src="/images/graphmapping.jpg" width="350" title="GraphMapping">
 
 </p>
 
-
+# LLMs and Human in direct and indirect Mapping(Performance) : 
 
 <p align="center">
-  <img src="/images/di_indi.png" width="350" title="GraphMapping">
+  <img src="/images/di_indi.png" width="550" title="GraphMapping">
 
 </p>
 
 
+# LLMs and Human in Crossed and not Crossed Mapping(Performance) : 
+
 <p align="center">
-  <img src="/images/crossed.png" width="350" title="GraphMapping">
+  <img src="/images/crossed.png" width="550" title="GraphMapping">
 
 </p>
