@@ -13,9 +13,11 @@ pip install -q -U google-genai
 
 
 
-![Alt text](/images/graphmapping.jpg?raw=true "GraphMapping")
 
+<p align="center">
+  <img src="y/images/graphmapping.jpg" width="350" title="GraphMapping">
 
+</p>
 
 
 ![Alt text](/images/di_indi.png?raw=true "Direct vs InDirect")
