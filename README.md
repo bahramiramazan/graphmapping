@@ -15,7 +15,7 @@ pip install -q -U google-genai
 
 
 <p align="center">
-  <img src="y/images/graphmapping.jpg" width="350" title="GraphMapping">
+  <img src="/images/graphmapping.jpg" width="350" title="GraphMapping">
 
 </p>
 
