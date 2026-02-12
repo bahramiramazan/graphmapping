@@ -10,7 +10,7 @@ from solutions import *
 
 
 #####
-with open('questions'+str(9)+'.json') as f:
+with open('files/questions'+str(9)+'.json') as f:
     questions_records = json.load(f)#['Qs']
 
 
@@ -277,7 +277,7 @@ def generate_questions(task,version,print_existing_id=None,corss='True'):
             questions_records[key]={'original':{'crossed':{},'not_crossed':{}},'v2':{}}
             questions_records[key][version][cross_temp][id_No_]=Record
 
-        file='questions'+str(key)+'.json'
+        file='files/questions'+str(key)+'.json'
         with open(file, 'w') as fp:
             json.dump(questions_records, fp)
 
