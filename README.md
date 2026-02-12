@@ -20,7 +20,14 @@ pip install -q -U google-genai
 </p>
 
 
-![Alt text](/images/di_indi.png?raw=true "Direct vs InDirect")
-![Alt text](/images/crossed.png?raw=true "Crossed vs not Crossed")
+
+<p align="center">
+  <img src="/images/di_indi.png" width="350" title="GraphMapping">
+
+</p>
 
 
+<p align="center">
+  <img src="/images/crossed.png" width="350" title="GraphMapping">
+
+</p>
