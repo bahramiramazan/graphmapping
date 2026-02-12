@@ -6,7 +6,6 @@ from utils import *
 import json
 from numpy import random
 import datetime
-from solutions import *
 
 
 #####
