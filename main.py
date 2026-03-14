@@ -7,14 +7,19 @@ import json
 from numpy import random
 import datetime
 
+from Eval import *
+import datetime
+import time
+import os
 
 #####
-with open('files/questions'+str(9)+'.json') as f:
+file=file='files/questions'+'_opensource_repeat_60'+'.json'
+with open(file) as f:
     questions_records = json.load(f)#['Qs']
 
 
 
-questions_records={}
+#questions_records={}
 questions={}
 
 def print_test_questions(L_train,L_test,id_No,task,corss,version):
@@ -42,6 +47,8 @@ def print_test_questions(L_train,L_test,id_No,task,corss,version):
             continue
         print('##################################')
         Overwrite_cross=False if l=='experiment' else True
+        if version=='v2':
+            Overwrite_cross=True
  
        #
         config['predefined_training']=str(l)+'_trials.csv'
@@ -77,6 +84,8 @@ def print_test_questions(L_train,L_test,id_No,task,corss,version):
     for l in L_test:
         experiment=True if l=='experiment' else False
         Overwrite_cross=False if l=='experiment' else True
+
+        print('Overwrite_cross',Overwrite_cross)
 
  
 
@@ -120,6 +129,84 @@ def print_test_questions(L_train,L_test,id_No,task,corss,version):
     return prompt_data
 
 ####
+#######################
+gemini_3_flash_preview={'agent':'gemini','model':"gemini-3-flash-preview"}
+gemini_3_pro_preview={'agent':'gemini','model':"gemini-3-pro-preview"}
+gemini_25_flash={'agent':'gemini','model':"gemini-2.5-flash"}
+
+gemini_25_pro={'agent':'gemini','model':"gemini-2.5-pro"}
+gemini_20_flash={'agent':'gemini','model':"gemini-2.0-flash"}
+########
+gpt_41_mini={'agent':'gpt','model':"gpt-4.1-mini"}
+gpt_41={'agent':'gpt','model':"gpt-4.1"}
+
+
+gpt_5_mini={'agent':'gpt','model':"gpt-5-mini"}
+gpt_5_nano={'agent':'gpt','model':"gpt-5-nano"}
+gpt_52={'agent':'gpt','model':"gpt-5.2"}
+
+
+
+
+
+deepseek_v3_2_Exp={'agent':'hf','model':"deepseek-ai/DeepSeek-V3.2-Exp:novita"}
+
+
+deepseek_v3_2={'agent':'hf','model':"deepseek-ai/DeepSeek-V3.2:novita"}
+
+Qwen3_Coder={'agent':'hf','model':"Qwen/Qwen3-Coder-Next:novita"}
+
+
+Qwen3={'agent':'hf','model':"Qwen/Qwen3-235B-A22B-Instruct-2507:novita"}
+
+Qwen3_235B={'agent':'gwdg','model':"qwen3-32b"}
+Qwen3_30b={'agent':'gwdg','model':"qwen3-30b-a3b-thinking-2507"}
+
+
+qwen3_coder={'agent':'gwdg','model':"qwen3-coder-30b-a3b-instruct"}
+
+
+mistral={'agent':'gwdg','model':"mistral-large-instruct"}
+
+deepseek_r1={'agent':'gwdg','model':"deepseek-r1"}
+
+deepseek_r1_distill={'agent':'gwdg','model':"deepseek-r1-distill-llama-70b"}
+
+
+Qwen2_5={'agent':'hf','model':"Qwen/Qwen2.5-7B-Instruct:together"}
+Qwen_2={'agent':'hf','model':"Qwen/Qwen2-72B-Instruct:featherless-ai"}
+
+
+Llama_4={'agent':'hf','model':"meta-llama/Llama-4-Scout-17B-16E-Instruct:groq"}
+
+Llama_3_3={'agent':'hf','model':"meta-llama/Llama-3.3-70B-Instruct:groq"}
+# Qwen=Llama_3_3
+
+OpenSource_MODELS=[Llama_4,deepseek_v3_2_Exp,deepseek_v3_2,\
+Qwen3,Qwen3_235B,Qwen3_30b,qwen3_coder,mistral,deepseek_r1,deepseek_r1_distill,Qwen2_5,\
+
+
+]
+
+OpenSource_MODELS=[deepseek_v3_2_Exp,deepseek_v3_2,]
+
+BBEH_Test_Models=[Llama_4,gpt_52,gemini_3_flash_preview,gpt_41_mini,gpt_5_mini,gpt_5_nano,gpt_52,\
+gemini_3_pro_preview,gemini_25_flash,gemini_20_flash,\
+deepseek_v3_2_Exp,deepseek_v3_2,Qwen3_235B,Qwen2_5]
+
+
+BBEH_Test_Models=[Qwen2_5,Qwen3_235B,Qwen2_5,Llama_3_3]
+
+BBEH_Test_Models=[deepseek_r1,deepseek_r1_distill,deepseek_v3_2_Exp,deepseek_v3_2,]
+
+BBEH_Test_Models=[deepseek_v3_2_Exp,deepseek_v3_2]
+
+
+MODELS_Pro=[deepseek_v3_2,gemini_3_flash_preview,gemini_25_pro,gpt_41_mini,gpt_41,gpt_5_mini,gpt_5_nano,gpt_52,\
+gemini_20_flash,gemini_25_pro,gemini_25_flash,gemini_3_pro_preview,gemini_3_flash_preview]
+
+
+
 def generate_questions(task,version,print_existing_id=None,corss='True'):
     print('test')
     id_No = random.randint(1000,size=(1))[0]
@@ -140,35 +227,13 @@ def generate_questions(task,version,print_existing_id=None,corss='True'):
     L=[4,6,8,10,12]
 
     l_train=[12,]
-    l_test=['experiment',]
+    l_test=['60',]
 
 
     #######################
-    gemini_3_flash_preview={'agent':'gemini','model':"gemini-3-flash-preview"}
-    gemini_3_pro_preview={'agent':'gemini','model':"gemini-3-pro-preview"}
-    gemini_25_flash={'agent':'gemini','model':"gemini-2.5-flash"}
-    
-    gemini_25_pro={'agent':'gemini','model':"gemini-2.5-pro"}
-    gemini_20_flash={'agent':'gemini','model':"gemini-2.0-flash"}
-    ########
-    gpt_41_mini={'agent':'gpt','model':"gpt-4.1-mini"}
-    gpt_41={'agent':'gpt','model':"gpt-4.1"}
-
-
-    gpt_5_mini={'agent':'gpt','model':"gpt-5-mini"}
-    gpt_5_nano={'agent':'gpt','model':"gpt-5-nano"}
-    gpt_52={'agent':'gpt','model':"gpt-5.2"}
-
-    MODELS=[gpt_41_mini,gpt_41,gpt_5_mini,gpt_5_nano,gpt_52,\
-    gemini_20_flash,gemini_25_pro,gemini_25_flash,gemini_3_pro_preview,gemini_3_flash_preview]
-    
-
     corss_=corss
-
-
-    
-
-    
+  
+    MODELS=OpenSource_MODELS
 
     for mi,m in enumerate(MODELS):
         data=print_test_questions(l_train,l_test,id_No,task,corss_,version)
@@ -186,10 +251,9 @@ def generate_questions(task,version,print_existing_id=None,corss='True'):
 
 
 
+
         answers=ask_ai(selected_model,questions_as_list,train,version,Show_train_set)
-        #exit()
-
-
+    
 
         
         Record={'Qs':questions,'data':data,'answers':answers,'data_name':l_test[0],'selected_model':selected_model,'Show_train_set':Show_train_set}
@@ -203,227 +267,110 @@ def generate_questions(task,version,print_existing_id=None,corss='True'):
             questions_records[key]={'original':{'crossed':{},'not_crossed':{}},'v2':{}}
             questions_records[key][version][cross_temp][id_No_]=Record
 
-        file='files/questions'+str(key)+'.json'
+        file='files/questions'+'_opensource_repeat_602'+'.json'
         with open(file, 'w') as fp:
             json.dump(questions_records, fp)
 
 
 
-def eval_answer(flag=False):
-    #####
-    import itertools
-    if flag:
-        with open('files/questions_'+str(60)+'_crossed.json') as f:
-            questions_records = json.load(f)#['Qs']
+def read_bbeh(task,model_source='gwdg'):
+
+
+    # import os
+    # from openai import OpenAI
+
+    # client = OpenAI(
+    #     base_url="https://router.huggingface.co/v1",
+    #     api_key=os.environ["HF_TOKEN"],
+    # )
+
+    # completion = client.chat.completions.create(
+    #     model="deepseek-ai/DeepSeek-V3.2:novita",
+    #     messages=[
+    #         {
+    #             "role": "user",
+    #             "content": "What is the capital of France?"
+    #         }
+    #     ],
+    # )
+
+    # print(completion.choices[0].message)
+    # exit()
     
-    else:
-        with open('files/questions'+str(9)+'.json') as f:
-            questions_records = json.load(f)#['Qs']
+    MODELS=BBEH_Test_Models
 
 
+    Records_Data=[]
 
-    keys=questions_records.keys()
-    direct_indirect_all=[]
-    Crossed_not_crossed_all=[]
-    no_of_edges_acc_all=[]
-    no_of_nodes_acc_all=[]
-    Speed_All=[]
-
-    for k in keys:
-        print('questions_records[k]',questions_records[k].keys())
-        answers_set_all_crossed=questions_records[k]['original']['crossed']
-        answers_set_all_not_crossed=questions_records[k]['original']['not_crossed']
-    
-        total_seconds=0
-        tempd=answers_set_all_crossed
-
-        for batchid in tempd:
-
-            answers_set_batch=tempd[batchid]
+    for mi,selected_model in enumerate(MODELS): 
+        path = "bbeh-main/benchmark_tasks"
+        task_folders = os.listdir(path)
+        #print("Directory contents:", task_folders)
+        print('selected_model',selected_model)
+        for ti, task in enumerate(task_folders):
+            print('task',task)
 
 
+            #continue
+            if task=='.DS_Store':
+                continue
+            task_file_path=path+'/'+str(task)+'/task.json'
+            with open(task_file_path) as f:
+                task_data = json.load(f)#['Qs']
+            print('task_data',task_data.keys())
 
-            questions=answers_set_batch['Qs']
-            data=answers_set_batch['data']
-            answers=answers_set_batch['answers']
-            data_name=answers_set_batch['data_name']
-            selected_model=answers_set_batch['selected_model']
-            Show_train_set=answers_set_batch['Show_train_set'] if 'Show_train_set' in answers_set_batch.keys() else True
+            examples=task_data['examples']
+            canary=task_data['canary']
+            #print('canary',canary)
+            #print('****')
+            random.shuffle(examples)
 
-  
-            # if 'gpt' not in selected_model['model']:
-            #     continue
-            print('##############################')
-            print('data_name',data_name)
-            print('selected_model',selected_model)
-            print('Show_train_set',Show_train_set)
-            ##
-            direct_indirect={}
-            Crossed_not_crossed={}
-            no_of_edges_acc={}
-            no_of_nodes_acc={}
+            examples=examples[:10]
+       
+            for e in examples:
+                # print('task_folders',ti)
+                # print('examples',len(examples))
+                # print('e.keys',e.keys())
+                # print('e',e)
+                print('----')
+                input_=e['input']
+                target=e['target']
 
-            c=0
-            nc=0
-            total_seconds=0
-            for a in answers:
-                
-                map_solution=a['map_solution']
-                an_obtained=a['an_obtained']
-                duration=a['duration']
-                eval_d=a['eval_d']
-                name=eval_d['name']
-                type_=eval_d['Type_']
-                Crossed_edges=eval_d['Crossed_edges']
+                q=input_
           
-                source_adj=eval_d['source_adj']
+                start_time = datetime.datetime.now()
+                #try:
+                answer=eval_bbeh(selected_model,q,task,model_source='gemini' )
+                print('answer',answer.answer)
 
-                no_of_edges= list(itertools.chain.from_iterable(source_adj))
-                no_of_edges=sum(no_of_edges)
-                no_of_nodes=len(source_adj[0])
-                no_of_edges=str(no_of_edges)
-                no_of_nodes=str(no_of_nodes)
-                # print('source_adj',source_adj)
-                # print('no_of_edges',no_of_edges)
+                print('target',target)
+                end_time = datetime.datetime.now()
+                duration=end_time-start_time
+                duration= duration.total_seconds()
 
+                Record={'agent':selected_model['agent'],\
+                'selected_model':selected_model['model'],'answer':answer.answer,'thinking':answer.thinking,\
+                'target':target,'input':input_,'task':task,'start':str(start_time),'duration':duration}
+                Records_Data.append(Record)
+                # except:
 
+                #     print('exception occured')
+                #     continue
+                file='files/questions'+'bbeh'+'_gpt_random3.json'
+                Data={'data':Records_Data}
+                with open(file, 'w') as fp:
+                    json.dump(Data, fp)
                 
 
-          
-          
-                total_seconds=total_seconds+duration
-                if map_solution==an_obtained:
-                    c=c+1
-                    if type_ in direct_indirect.keys():
-                        direct_indirect[type_]['c']=direct_indirect[type_]['c']+1
-                        #print('direct_indirect[type_]',direct_indirect[type_])
-                        direct_indirect[type_]['duration']+=duration
-                    else:
-                        direct_indirect[type_]={'c':0,'nc':0,'duration':duration}
-                        direct_indirect[type_]['c']=direct_indirect[type_]['c']+1
-                    ########
-                    if Crossed_edges in Crossed_not_crossed.keys():
-                        Crossed_not_crossed[Crossed_edges]['c']=Crossed_not_crossed[Crossed_edges]['c']+1
-                        Crossed_not_crossed[Crossed_edges]['duration']+=duration
-                    else:
-                        Crossed_not_crossed[Crossed_edges]={'c':0,'nc':0,'duration':duration}
-                        Crossed_not_crossed[Crossed_edges]['c']=Crossed_not_crossed[Crossed_edges]['c']+1
-                    ##################
-                    if no_of_edges in no_of_edges_acc.keys():
-                        no_of_edges_acc[no_of_edges]['c']+=1
-                        no_of_edges_acc[no_of_edges]['duration']+=duration
-                    else:
-                        no_of_edges_acc[no_of_edges]={'c':0,'nc':0,'duration':duration}
-                        no_of_edges_acc[no_of_edges]['c']+=1
-                        no_of_edges_acc[no_of_edges]['duration']=duration
-                    ##
-                    if no_of_nodes in no_of_nodes_acc.keys():
-                        no_of_nodes_acc[no_of_nodes]['c']+=1
-                        no_of_nodes_acc[no_of_nodes]['duration']+=duration
-                    else:
-                        no_of_nodes_acc[no_of_nodes]={'c':0,'nc':0,'duration':duration}
-                        no_of_nodes_acc[no_of_nodes]['c']+=1
-                else:
-                    nc=nc+1
-                    if type_ in direct_indirect.keys():
-                        direct_indirect[type_]['nc']=direct_indirect[type_]['nc']+1
-                        direct_indirect[type_]['duration']=+duration
-                    else:
-                        direct_indirect[type_]={'c':0,'nc':0,'duration':duration}
-                        direct_indirect[type_]['nc']=direct_indirect[type_]['nc']+1
-                    ########
-                    if Crossed_edges in Crossed_not_crossed.keys():
-                        Crossed_not_crossed[Crossed_edges]['nc']=Crossed_not_crossed[Crossed_edges]['nc']+1
-                        Crossed_not_crossed[Crossed_edges]['duration']+=duration
-                    else:
-                        Crossed_not_crossed[Crossed_edges]={'c':0,'nc':0,'duration':duration}
-                        Crossed_not_crossed[Crossed_edges]['nc']=Crossed_not_crossed[Crossed_edges]['nc']+1
-                    ##################
-                    ##################
-                    if no_of_edges in no_of_edges_acc.keys():
-                        no_of_edges_acc[no_of_edges]['nc']+=1
-                        no_of_edges_acc[no_of_edges]['duration']=duration
-                    else:
-                        no_of_edges_acc[no_of_edges]={'c':0,'nc':0,'duration':duration}
-                        no_of_edges_acc[no_of_edges]['nc']+=1
-                    ##
-                    if no_of_nodes in no_of_nodes_acc.keys():
-                        no_of_nodes_acc[no_of_nodes]['nc']+=1
-                        no_of_nodes_acc[no_of_nodes]['duration']+=duration
-                    else:
-                        no_of_nodes_acc[no_of_nodes]={'c':0,'nc':0,'duration':duration}
-                        no_of_nodes_acc[no_of_nodes]['nc']+=1
-            print('c',c)
-            print('nc',nc)
-            print('total_minutes',total_seconds/60)
-
-            ###
-            for k in no_of_edges_acc.keys():
-                c=no_of_edges_acc[k]['c']
-                nc=no_of_edges_acc[k]['nc']
-                acc=c/(c+nc)
-                no_of_edges_acc[k]['ac']=acc
-
-            for k in no_of_nodes_acc.keys():
-                c=no_of_nodes_acc[k]['c']
-                nc=no_of_nodes_acc[k]['nc']
-                acc=c/(c+nc)
-                no_of_nodes_acc[k]['ac']=acc
-
-
-            print('+++')
-            print('direct_indirect',direct_indirect)
-            print('Crossed_not_crossed',Crossed_not_crossed)
-            print('no_of_edges_acc',no_of_edges_acc)
-            print('no_of_nodes_acc',no_of_nodes_acc)
-            ###
-            selected_model=selected_model['model']
-            for k in direct_indirect.keys():
-                data=direct_indirect[k]
-                duration=data['duration']/(data['c']+data['nc'])
-                acc=data['c']/(data['c']+data['nc'])
-                if acc==0:
-                    acc=.1
-                if k=='mixed':
-                    continue
-                direct_indirect_all.append([selected_model,k,acc,duration])
-            ##
-            for k in Crossed_not_crossed.keys():
-                data=Crossed_not_crossed[k]
-                acc=data['c']/(data['c']+data['nc'])
-                duration=data['duration']/(data['c']+data['nc'])
-                if acc==0:
-                    acc=.1
-                if k=='no':
-                    k='False'
-                Crossed_not_crossed_all.append([selected_model,k,acc,duration])
-            ##
-            for k in no_of_edges_acc.keys():
-                data=no_of_edges_acc[k]
-                acc=data['c']/(data['c']+data['nc'])
-                duration=data['duration']/(data['c']+data['nc'])
-                if acc==0:
-                    acc=.1
-                no_of_edges_acc_all.append([selected_model,k,acc,duration])
-            ##
-            ##
-            for k in no_of_nodes_acc.keys():
-                data=no_of_nodes_acc[k]
-                duration=data['duration']/(data['c']+data['nc'])
-                acc=data['c']/(data['c']+data['nc'])
-                if acc==0:
-                    acc=.1
-                no_of_nodes_acc_all.append([selected_model,k,acc,duration])
-
-
-    return direct_indirect_all,Crossed_not_crossed_all,no_of_edges_acc_all,no_of_nodes_acc_all
-
-
-
-         
-
-
-
+                #break
+        
+            file='files/questions'+'bbeh'+'_gpt_random3.json'
+            Data={'data':Records_Data}
+            with open(file, 'w') as fp:
+                json.dump(Data, fp)
+        #break
+                
+ 
 
 
 
@@ -440,7 +387,9 @@ if __name__ == "__main__":
         generate_questions(task,version,print_existing_id=existing,corss=cross)
     elif task=='eval':
         eval_answer()
+    elif task=='bbeh':
+        read_bbeh(task)
 
 
 
-###
+        
