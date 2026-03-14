@@ -380,7 +380,7 @@ def eval_answer(flag=False):
     Data_all=[]
 
     for k in keys:
-        print('questions_records[k]',questions_records[k].keys())
+        #print('questions_records[k]',questions_records[k].keys())
         answers_set_all_crossed=questions_records[k]['original']['crossed']
         answers_set_all_not_crossed=questions_records[k]['original']['not_crossed']
     
@@ -403,10 +403,10 @@ def eval_answer(flag=False):
   
             # if 'gpt' not in selected_model['model']:
             #     continue
-            print('##############################')
-            print('data_name',data_name)
-            print('selected_model',selected_model)
-            print('Show_train_set',Show_train_set)
+            # print('##############################')
+            # print('data_name',data_name)
+            # print('selected_model',selected_model)
+            # print('Show_train_set',Show_train_set)
             ##
             direct_indirect={}
             Crossed_not_crossed={}
@@ -426,7 +426,7 @@ def eval_answer(flag=False):
                 name=eval_d['name']
                 type_=eval_d['Type_']
                 Crossed_edges=eval_d['Crossed_edges']
-                print('Crossed_edges',Crossed_edges)
+                #print('Crossed_edges',Crossed_edges)
           
                 source_adj=eval_d['source_adj']
 
@@ -459,139 +459,7 @@ def eval_answer(flag=False):
                 Data_all.append(item)
     return Data_all
    
-                
-
-          
-    #             if duration=='None':
-    #                 continue
-    #             total_seconds=total_seconds+int(duration)
-    #             if map_solution==an_obtained:
-    #                 c=c+1
-    #                 if type_ in direct_indirect.keys():
-    #                     direct_indirect[type_]['c']=direct_indirect[type_]['c']+1
-    #                     #print('direct_indirect[type_]',direct_indirect[type_])
-    #                     direct_indirect[type_]['duration']+=duration
-    #                 else:
-    #                     direct_indirect[type_]={'c':0,'nc':0,'duration':duration}
-    #                     direct_indirect[type_]['c']=direct_indirect[type_]['c']+1
-    #                 ########
-    #                 if Crossed_edges in Crossed_not_crossed.keys():
-    #                     Crossed_not_crossed[Crossed_edges]['c']=Crossed_not_crossed[Crossed_edges]['c']+1
-    #                     Crossed_not_crossed[Crossed_edges]['duration']+=duration
-    #                 else:
-    #                     Crossed_not_crossed[Crossed_edges]={'c':0,'nc':0,'duration':duration}
-    #                     Crossed_not_crossed[Crossed_edges]['c']=Crossed_not_crossed[Crossed_edges]['c']+1
-    #                 ##################
-    #                 if no_of_edges in no_of_edges_acc.keys():
-    #                     no_of_edges_acc[no_of_edges]['c']+=1
-    #                     no_of_edges_acc[no_of_edges]['duration']+=duration
-    #                 else:
-    #                     no_of_edges_acc[no_of_edges]={'c':0,'nc':0,'duration':duration}
-    #                     no_of_edges_acc[no_of_edges]['c']+=1
-    #                     no_of_edges_acc[no_of_edges]['duration']=duration
-    #                 ##
-    #                 if no_of_nodes in no_of_nodes_acc.keys():
-    #                     no_of_nodes_acc[no_of_nodes]['c']+=1
-    #                     no_of_nodes_acc[no_of_nodes]['duration']+=duration
-    #                 else:
-    #                     no_of_nodes_acc[no_of_nodes]={'c':0,'nc':0,'duration':duration}
-    #                     no_of_nodes_acc[no_of_nodes]['c']+=1
-    #             else:
-    #                 nc=nc+1
-    #                 if type_ in direct_indirect.keys():
-    #                     direct_indirect[type_]['nc']=direct_indirect[type_]['nc']+1
-    #                     direct_indirect[type_]['duration']=+duration
-    #                 else:
-    #                     direct_indirect[type_]={'c':0,'nc':0,'duration':duration}
-    #                     direct_indirect[type_]['nc']=direct_indirect[type_]['nc']+1
-    #                 ########
-    #                 if Crossed_edges in Crossed_not_crossed.keys():
-    #                     Crossed_not_crossed[Crossed_edges]['nc']=Crossed_not_crossed[Crossed_edges]['nc']+1
-    #                     Crossed_not_crossed[Crossed_edges]['duration']+=duration
-    #                 else:
-    #                     Crossed_not_crossed[Crossed_edges]={'c':0,'nc':0,'duration':duration}
-    #                     Crossed_not_crossed[Crossed_edges]['nc']=Crossed_not_crossed[Crossed_edges]['nc']+1
-    #                 ##################
-    #                 ##################
-    #                 if no_of_edges in no_of_edges_acc.keys():
-    #                     no_of_edges_acc[no_of_edges]['nc']+=1
-    #                     no_of_edges_acc[no_of_edges]['duration']=duration
-    #                 else:
-    #                     no_of_edges_acc[no_of_edges]={'c':0,'nc':0,'duration':duration}
-    #                     no_of_edges_acc[no_of_edges]['nc']+=1
-    #                 ##
-    #                 if no_of_nodes in no_of_nodes_acc.keys():
-    #                     no_of_nodes_acc[no_of_nodes]['nc']+=1
-    #                     no_of_nodes_acc[no_of_nodes]['duration']+=duration
-    #                 else:
-    #                     no_of_nodes_acc[no_of_nodes]={'c':0,'nc':0,'duration':duration}
-    #                     no_of_nodes_acc[no_of_nodes]['nc']+=1
-    #         print('c',c)
-    #         print('nc',nc)
-    #         print('total_minutes',total_seconds/60)
-
-    #         ###
-    #         for k in no_of_edges_acc.keys():
-    #             c=no_of_edges_acc[k]['c']
-    #             nc=no_of_edges_acc[k]['nc']
-    #             acc=c/(c+nc)
-    #             no_of_edges_acc[k]['ac']=acc
-
-    #         for k in no_of_nodes_acc.keys():
-    #             c=no_of_nodes_acc[k]['c']
-    #             nc=no_of_nodes_acc[k]['nc']
-    #             acc=c/(c+nc)
-    #             no_of_nodes_acc[k]['ac']=acc
-
-
-    #         print('+++')
-    #         print('direct_indirect',direct_indirect)
-    #         print('Crossed_not_crossed',Crossed_not_crossed)
-    #         print('no_of_edges_acc',no_of_edges_acc)
-    #         print('no_of_nodes_acc',no_of_nodes_acc)
-    #         ###
-    #         selected_model=selected_model['model']
-    #         for k in direct_indirect.keys():
-    #             data=direct_indirect[k]
-    #             duration=data['duration']/(data['c']+data['nc'])
-    #             acc=data['c']/(data['c']+data['nc'])
-    #             if acc==0:
-    #                 acc=.01
-    #             if k=='mixed':
-    #                 continue
-    #             direct_indirect_all.append([selected_model,k,acc,duration])
-    #         ##
-    #         for k in Crossed_not_crossed.keys():
-    #             data=Crossed_not_crossed[k]
-    #             acc=data['c']/(data['c']+data['nc'])
-    #             duration=data['duration']/(data['c']+data['nc'])
-    #             if acc==0:
-    #                 acc=.01
-    #             if k=='no':
-    #                 k='False'
-    #             Crossed_not_crossed_all.append([selected_model,k,acc,duration])
-    #         ##
-    #         for k in no_of_edges_acc.keys():
-    #             data=no_of_edges_acc[k]
-    #             acc=data['c']/(data['c']+data['nc'])
-    #             duration=data['duration']/(data['c']+data['nc'])
-    #             if acc==0:
-    #                 acc=.01
-    #             no_of_edges_acc_all.append([selected_model,k,acc,duration])
-    #         ##
-    #         ##
-    #         for k in no_of_nodes_acc.keys():
-    #             data=no_of_nodes_acc[k]
-    #             duration=data['duration']/(data['c']+data['nc'])
-    #             acc=data['c']/(data['c']+data['nc'])
-    #             if acc==0:
-    #                 acc=.01
-    #             no_of_nodes_acc_all.append([selected_model,k,acc,duration])
-
-
-    # return direct_indirect_all,Crossed_not_crossed_all,no_of_edges_acc_all,no_of_nodes_acc_all
-
-
+            
 
          
 
