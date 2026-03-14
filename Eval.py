@@ -356,14 +356,14 @@ def eval_answer(flag=False):
         file='files/questions_'+str(60)+'_crossed.json'
         #file='files/questions'+'repeated'+str(2)+'.json'
         #file='files/questions_opensource_repeat.json'
-        #file='files/questions'+'_opensource_repeat_602'+'.json'
+        file='files/questions'+'_opensource_repeat_602'+'.json'
 
         with open(file) as f:
             questions_records = json.load(f)#['Qs']
     
     else:
         file='files/questions'+str(9)+'.json'
-        #file='files/questions_opensource_repeat.json'
+        file='files/questions_opensource_repeat.json'
         
         with open(file) as f:
             questions_records = json.load(f)#['Qs']
